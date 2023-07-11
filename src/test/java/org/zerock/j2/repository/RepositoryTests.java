@@ -63,10 +63,45 @@ public class RepositoryTests {
             System.out.println(board.getImages());
         });
     }
+
     @Test
     @Transactional
     public void testListQuerydsl() {
         PageRequestDTO requestDTO = new PageRequestDTO();
-        repository.list(requestDTO);
+        System.out.println("--------------------------------------");
+        System.out.println(repository.list(requestDTO));
+        System.out.println("--------------------------------------");
+    }
+
+    @Test
+    public void testSelectOne() {
+        Long bno = 100L;
+        FileBoard board = repository.selectOne(bno);
+        System.out.println(board);
+        System.out.println(board.getImages());
+
+    }
+
+    @Test
+    @Transactional
+    @Commit
+    public void testDelete() {
+        // one to many의 주제는 pk 가진쪽
+
+        Long bno = 10L;
+        repository.deleteById(bno);
+    }
+
+    @Commit
+    @Test
+    @Transactional
+    public void testUpdate() {
+        Optional<FileBoard> result = repository.findById(20L);
+        FileBoard board = result.orElseThrow();
+        board.clearImages();
+
+        FileBoardImage img1 = FileBoardImage.builder().uuid(UUID.randomUUID().toString()).fname("zzzz.jpg").build();
+        board.addImage(img1);
+        repository.save(board);
     }
 }
