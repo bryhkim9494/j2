@@ -1,22 +1,25 @@
 package org.zerock.j2.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
-
-import lombok.Data;
-import lombok.ToString;
 
 @Data
 @ToString
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class ProductDTO {
 
     private Long pno;
     private String pname;
     private String pdesc;
     private int price;
-    private List<String> images;
+    @Builder.Default
+    private List<String> images = new ArrayList<>();
 
-    
-    private List<MultipartFile> files; // 등록하고 수정할때 업로드된 파일 데이터를 수집하는 용도
+    @Builder.Default
+    private List<MultipartFile> files = new ArrayList<>(); // 등록하고 수정할때 업로드된 파일 데이터를 수집하는 용도
 }

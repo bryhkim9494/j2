@@ -32,6 +32,9 @@ public class Product {
     private String pdesc;
     private String writer;
     private int price;
+    private boolean delFlag;
+
+
     @ElementCollection(fetch = FetchType.LAZY)
     @Builder.Default
     private List<ProductImage> images = new ArrayList<>();
@@ -48,5 +51,20 @@ public class Product {
 
     public void changePrice(int price) {
         this.price = price;
+    }
+
+    public void changePname(String pname) {
+        this.pname = pname;
+
+    }
+
+    public void changePdesc(String pdesc) {
+        this.pdesc = pdesc;
+
+    }
+
+    public void changeDel(boolean delFlag) {
+        this.delFlag = delFlag;
+
     }
 }
