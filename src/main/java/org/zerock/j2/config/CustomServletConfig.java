@@ -18,6 +18,9 @@ public class CustomServletConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(jwtInterceptor).addPathPatterns("/api/**").excludePathPatterns("/api/member/login");
+
+        registry.addInterceptor(jwtInterceptor)
+                .addPathPatterns("/api/**")
+                .excludePathPatterns("/api/member/login","/api/member/refresh");
     }
 }

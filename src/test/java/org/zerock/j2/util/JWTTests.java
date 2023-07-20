@@ -21,7 +21,7 @@ public class JWTTests {
 
     @Test
     public void testToken() {
-        String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InVzZXIwMEBhYWEuY29tIiwiaWF0IjoxNjg5NzQ0Mzc5LCJleHAiOjE2ODk3NDQ5Nzl9.0T_3Uxe15NfLEc6guM2zCVJclc9FeYVPifGF_inWEhw111";
+        String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InVzZXIwMEBhYWEuY29tIiwiaWF0IjoxNjg5NzQ0Mzc5LCJleHAiOjE2ODk3NDQ5Nzl9.0T_3Uxe15NfLEc6guM2zCVJclc9FeYVPifGF_inWEhw";
         try {
 
             jwtUtil.validateToken(token);
