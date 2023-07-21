@@ -15,7 +15,6 @@ public class MemberCart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long cno; //삭제하기 위해 필요함
-
     private String email;
     private Long pno;
 

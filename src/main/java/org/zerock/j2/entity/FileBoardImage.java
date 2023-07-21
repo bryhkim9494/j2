@@ -18,13 +18,12 @@ public class FileBoardImage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long imgno;
+    private Long imgno; // 파일 게시판 이미지의 고유 번호 (PK)
+    private String uuid; // 파일 고유 식별자 (UUID)
+    private String fname; // 파일 이름
+    private int ord; // 이미지의 순서를 나타내는 변수
 
-    private String uuid;
-
-    private String fname;
-    private int ord;
-    public void changeOrd(int ord) {
-        this.ord=ord;
+    public void changeOrd(int ord) { // 이미지의 순서를 변경하는 메서드
+        this.ord = ord;
     }
 }

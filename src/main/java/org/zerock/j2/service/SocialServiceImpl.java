@@ -17,6 +17,8 @@ import java.util.LinkedHashMap;
 @Service
 @Log4j2
 public class SocialServiceImpl implements SocialService {
+
+    // application.properties 파일에서 값을 가져와서 설정하는 변수들
     @Value("${org.zerock.kakao.token_url}")
     private String tokenURL;
     @Value("${org.zerock.kakao.rest_key}")
@@ -26,6 +28,7 @@ public class SocialServiceImpl implements SocialService {
     @Value("${org.zerock.kakao.get_user}")
     private String getUser;
 
+    // 카카오 로그인으로 받은 authCode를 이용하여 사용자의 이메일을 가져오는 메서드
     @Override
     public String getKakaoEmail(String authCode) {
         log.info("==========================");
@@ -40,6 +43,7 @@ public class SocialServiceImpl implements SocialService {
         return email;
     }
 
+    // Access Token을 얻기 위한 메서드
     private String getAccessToken(String authCode) {
         String accessToken = null;
         RestTemplate restTemplate = new RestTemplate();
@@ -61,6 +65,7 @@ public class SocialServiceImpl implements SocialService {
         return accessToken;
     }
 
+    // Access Token을 이용하여 사용자의 이메일을 가져오는 메서드
     private String getEmailFromAccessToken(String accessToken) {
 
         if (accessToken == null) {
