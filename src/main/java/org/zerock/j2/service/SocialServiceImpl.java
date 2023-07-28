@@ -48,10 +48,15 @@ public class SocialServiceImpl implements SocialService {
         String accessToken = null;
         RestTemplate restTemplate = new RestTemplate();
 
+        // 카카오 토큰 요청에 필요한 HTTP 요청 헤더 생성
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
         HttpEntity<String> entity = new HttpEntity<>(headers);
+
+        // 카카오에게 Access Token을 요청하는 URI 생성
         UriComponents uriComponents = UriComponentsBuilder.fromHttpUrl(tokenURL).queryParam("grant_type", "authorization_code").queryParam("client_id", clientId).queryParam("redirect_uri", redirectURI).queryParam("code", authCode).build(true);
+
+        // 생성한 URI를 사용하여 카카오에게 Access Token을 요청하고, 응답을 받아옴
         ResponseEntity<LinkedHashMap> response =
                 restTemplate.exchange(
                         uriComponents.toString(), HttpMethod.POST, entity, LinkedHashMap.class);
@@ -73,13 +78,16 @@ public class SocialServiceImpl implements SocialService {
         }
         RestTemplate restTemplate = new RestTemplate();
 
+        // 카카오 사용자 정보를 요청할 때 사용하는 HTTP 요청 헤더 생성
         HttpHeaders headers = new HttpHeaders();
         headers.add("Authorization", "Bearer " + accessToken);
         headers.add("Content-Type", "application/x-www-form-urlencoded");
         HttpEntity<String> entity = new HttpEntity<>(headers);
 
+        // 카카오 사용자 정보를 가져오기 위한 URI 생성
         UriComponents uriBuilder = UriComponentsBuilder.fromHttpUrl(getUser).build();
 
+        // 생성한 URI를 사용하여 카카오에게 사용자 정보를 요청하고, 응답을 받아옴
         ResponseEntity<LinkedHashMap> response =
                 restTemplate.exchange(
                         uriBuilder.toString(),

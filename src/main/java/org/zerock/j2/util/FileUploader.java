@@ -28,6 +28,7 @@ public class FileUploader {
     @Value("${org.zerock.upload.path}")
     private String path;
 
+    // 주어진 파일 이름 목록에 해당하는 파일들을 서버에서 삭제하는 메서드
     public void removeFiles(List<String> fileNames) {
         if (fileNames == null || fileNames.size() == 0) {
             return;
@@ -43,6 +44,7 @@ public class FileUploader {
         }
     }
 
+    // 파일 업로드를 수행하는 메서드
     public List<String> uploadFiles(List<MultipartFile> files, boolean makeThumbnail) {
         if (files == null || files.size() == 0) {
             throw new UploadException("No File");
@@ -52,6 +54,7 @@ public class FileUploader {
         log.info(files);
 
         // loop
+        // 업로드된 각 파일에 대해 처리하는 반복문
         for (MultipartFile mFile : files) {
             String originalFileName = mFile.getOriginalFilename();
             String uuid = UUID.randomUUID().toString();
